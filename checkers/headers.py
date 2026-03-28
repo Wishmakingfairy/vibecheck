@@ -1,5 +1,5 @@
 """
-0xguard Security Headers Checker
+preflight Security Headers Checker
 11 checks for missing or misconfigured security headers.
 
 Author: Haralds Gabrans

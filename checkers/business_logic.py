@@ -1,5 +1,5 @@
 """
-0xguard Business Logic Checker
+preflight Business Logic Checker
 6 checks for race conditions, missing idempotency, negative values, sequential IDs, and rate limits.
 
 Author: Haralds Gabrans

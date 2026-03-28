@@ -1,5 +1,5 @@
 """
-0xguard Secrets & API Keys Checker
+preflight Secrets & API Keys Checker
 22 checks for hardcoded secrets, API keys, credentials, and sensitive data exposure.
 
 Author: Haralds Gabrans

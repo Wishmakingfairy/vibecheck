@@ -1,5 +1,5 @@
 """
-0xguard Privacy & Data Protection Checker
+preflight Privacy & Data Protection Checker
 8 checks for PII leaks, data exposure, credit card handling, and unsafe storage.
 
 Author: Haralds Gabrans

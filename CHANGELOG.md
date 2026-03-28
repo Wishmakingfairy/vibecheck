@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to 0xguard will be documented in this file.
+All notable changes to preflight will be documented in this file.
 
 ## [1.0.0] - 2026-03-27
 
@@ -23,9 +23,9 @@ All notable changes to 0xguard will be documented in this file.
 - File system security (5 checks)
 - WebSocket security (4 checks)
 - CWE mapping for all 156 checks (68 unique CWEs)
-- Inline suppression support (`// 0xguard-disable CHECK-ID`)
+- Inline suppression support (`// preflight-disable CHECK-ID`)
 - Test file auto-detection (auto-downgrade severity for test/spec/fixture files)
-- `.0xguard.json` project configuration
+- `.preflight.json` project configuration
 - security-scan skill for full codebase audits
 - secure-keys, secure-auth, secure-deploy teaching skills
 - security-scanner agent for deep analysis

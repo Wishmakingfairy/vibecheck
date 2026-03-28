@@ -1,5 +1,5 @@
 """
-0xguard AI/LLM Security Checker
+preflight AI/LLM Security Checker
 16 checks for AI API key exposure, prompt injection, system prompt leaks, and LLM output safety.
 
 Author: Haralds Gabrans

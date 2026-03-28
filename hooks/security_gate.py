@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-0xguard Security Gate - PreToolUse Hook
+preflight Security Gate - PreToolUse Hook
 Intercepts Write/Edit/MultiEdit operations and scans content for 156 security vulnerabilities.
 Blocks CRITICAL findings, warns on WARNING findings, passes INFO silently.
 
@@ -21,9 +21,9 @@ CHECKERS_DIR = os.path.join(PLUGIN_ROOT, "checkers")
 if CHECKERS_DIR not in sys.path:
     sys.path.insert(0, PLUGIN_ROOT)
 
-# Inline suppression pattern: // 0xguard-disable CHECK-ID or # 0xguard-disable CHECK-ID
+# Inline suppression pattern: // preflight-disable CHECK-ID or # preflight-disable CHECK-ID
 SUPPRESSION_PATTERN = re.compile(
-    r'(?://|#|/\*)\s*0xguard-disable\s+([\w,-]+)', re.IGNORECASE
+    r'(?://|#|/\*)\s*preflight-disable\s+([\w,-]+)', re.IGNORECASE
 )
 
 # Test file patterns that trigger auto-downgrade from CRITICAL to WARNING
@@ -44,11 +44,11 @@ TEST_FILE_PATTERNS = [
 TEST_FILE_RE = re.compile('|'.join(TEST_FILE_PATTERNS))
 
 # Config file name
-CONFIG_FILENAME = '.0xguard.json'
+CONFIG_FILENAME = '.preflight.json'
 
 
 def load_config(file_path):
-    """Load project-level .0xguard.json config.
+    """Load project-level .preflight.json config.
 
     Walks up from the file being written to find the nearest config file.
     Returns default config if none found.
@@ -132,7 +132,7 @@ def should_ignore_path(file_path, ignore_patterns):
 
 
 def is_config_weakening(file_path, content):
-    """Detect writes to .0xguard.json that weaken security (add disabled checks)."""
+    """Detect writes to .preflight.json that weaken security (add disabled checks)."""
     if not file_path or not file_path.endswith(CONFIG_FILENAME):
         return False
     try:
@@ -180,9 +180,9 @@ def main():
     # Check for config weakening
     if is_config_weakening(file_path, content):
         print(
-            "\n\u26a0\ufe0f  0xguard: You are disabling security checks in .0xguard.json.\n"
+            "\n\u26a0\ufe0f  preflight: You are disabling security checks in .preflight.json.\n"
             "  Make sure this is intentional. Disabled checks will no longer protect your codebase.\n"
-            "  Prefer inline suppression (// 0xguard-disable CHECK-ID) for specific cases.\n",
+            "  Prefer inline suppression (// preflight-disable CHECK-ID) for specific cases.\n",
             file=sys.stderr
         )
         # Warn but allow
@@ -242,15 +242,15 @@ def main():
     # Output warnings (non-blocking)
     for result in warned:
         print(
-            f"\n\u26a0\ufe0f  0xguard [{result.check_id}] {result.category}: {result.message}"
+            f"\n\u26a0\ufe0f  preflight [{result.check_id}] {result.category}: {result.message}"
             f"\n   Fix: {result.fix_suggestion}"
-            f"\n   Suppress: // 0xguard-disable {result.check_id}\n",
+            f"\n   Suppress: // preflight-disable {result.check_id}\n",
             file=sys.stderr
         )
 
     # Block on CRITICAL findings
     if blocked:
-        output = ["\n\U0001f6d1 0xguard BLOCKED this write. Security vulnerabilities detected:\n"]
+        output = ["\n\U0001f6d1 preflight BLOCKED this write. Security vulnerabilities detected:\n"]
         for result in blocked:
             output.append(
                 f"  [{result.check_id}] {result.category} | {result.message}\n"
@@ -258,7 +258,7 @@ def main():
                 f"  CWE: {result.cwe}\n"
             )
         output.append(
-            f"  Suppress if intentional: // 0xguard-disable {','.join(r.check_id for r in blocked)}\n"
+            f"  Suppress if intentional: // preflight-disable {','.join(r.check_id for r in blocked)}\n"
         )
         print('\n'.join(output), file=sys.stderr)
         sys.exit(2)

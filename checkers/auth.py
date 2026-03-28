@@ -1,5 +1,5 @@
 """
-0xguard Authentication & Authorization Checker
+preflight Authentication & Authorization Checker
 20 checks for auth vulnerabilities: JWT misuse, session security, OAuth, CSRF, rate limiting.
 
 Author: Haralds Gabrans

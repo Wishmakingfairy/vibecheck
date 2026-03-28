@@ -1,5 +1,5 @@
 """
-0xguard Injection Prevention Checker
+preflight Injection Prevention Checker
 21 checks for XSS, command injection, path traversal, deserialization, and code injection.
 
 Author: Haralds Gabrans

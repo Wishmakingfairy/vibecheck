@@ -1,5 +1,5 @@
 """
-0xguard Infrastructure Security Checker
+preflight Infrastructure Security Checker
 10 checks for deployment, container, and CI/CD security issues.
 
 Author: Haralds Gabrans

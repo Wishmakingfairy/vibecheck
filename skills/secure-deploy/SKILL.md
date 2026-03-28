@@ -14,7 +14,7 @@ triggers:
 
 ## CRITICAL (Must fix before deploy)
 
-- [ ] No API keys/secrets in source code (run `0xguard scan`)
+- [ ] No API keys/secrets in source code (run `preflight scan`)
 - [ ] .env files in .gitignore
 - [ ] DEBUG=False / NODE_ENV=production
 - [ ] Supabase RLS enabled on ALL tables

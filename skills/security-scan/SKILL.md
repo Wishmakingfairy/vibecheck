@@ -1,6 +1,6 @@
 ---
 name: security-scan
-description: "This skill should be used when the user asks to \"run a security scan\", \"check for vulnerabilities\", \"security audit\", \"ship secure\", \"0xguard scan\", or \"pre-deploy security check\". Runs 156 automated security checks across 15 categories and produces a categorized vulnerability report."
+description: "This skill should be used when the user asks to \"run a security scan\", \"check for vulnerabilities\", \"security audit\", \"ship secure\", \"preflight scan\", or \"pre-deploy security check\". Runs 156 automated security checks across 15 categories and produces a categorized vulnerability report."
 version: 1.0.0
 allowed-tools: "Bash, Read, Grep, Glob, Write"
 triggers:
@@ -8,11 +8,11 @@ triggers:
   - "vulnerability.?check"
   - "security.?audit"
   - "ship.?secure"
-  - "0xguard"
+  - "preflight"
   - "pre.?deploy.?security"
 ---
 
-# 0xguard Security Scan
+# preflight Security Scan
 
 Run 156 automated security checks against the current codebase. Produces a categorized report with severity levels and fix suggestions.
 
@@ -26,7 +26,7 @@ Run 156 automated security checks against the current codebase. Produces a categ
 ## Report Format
 
 ```markdown
-# 0xguard Security Report
+# preflight Security Report
 
 ## Summary
 | Severity | Count |
@@ -92,7 +92,7 @@ Each category has a detailed reference document with regex patterns, explanation
 
 ## Configuration
 
-Create `.0xguard.json` in project root to customize:
+Create `.preflight.json` in project root to customize:
 ```json
 {
   "severity_overrides": { "NET-001": "WARNING" },
