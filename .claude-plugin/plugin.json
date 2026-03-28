@@ -1,0 +1,27 @@
+{
+  "name": "0xguard",
+  "version": "1.0.0",
+  "description": "Stop shipping vulnerabilities. 156 automated security checks for Claude Code. Blocks exposed API keys, disabled Supabase RLS, missing rate limiting, open CORS, and 150+ more before they reach your codebase.",
+  "author": {
+    "name": "Haralds Gabrans",
+    "url": "https://github.com/haraldsgabrans"
+  },
+  "repository": "https://github.com/haraldsgabrans/0xguard",
+  "license": "MIT",
+  "keywords": [
+    "security",
+    "owasp",
+    "vibe-coding",
+    "vulnerability-scanner",
+    "secrets-detection",
+    "api-key-detection",
+    "supabase-rls",
+    "cors",
+    "xss",
+    "sql-injection",
+    "rate-limiting",
+    "devsecops",
+    "claude-code",
+    "claude-code-plugin"
+  ]
+}

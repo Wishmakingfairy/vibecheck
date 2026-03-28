@@ -1,0 +1,17 @@
+{
+  "description": "0xguard: 156 automated security checks. Blocks vulnerabilities before they reach your codebase.",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ${CLAUDE_PLUGIN_ROOT}/hooks/security_gate.py",
+            "timeout": 10000
+          }
+        ],
+        "matcher": "Write|Edit|MultiEdit"
+      }
+    ]
+  }
+}
