@@ -1,5 +1,5 @@
 """
-preflight Network & CORS Checker
+vibecheck Network & CORS Checker
 11 checks for CORS misconfiguration, SSRF, HTTPS enforcement, and network security.
 
 Author: Haralds Gabrans

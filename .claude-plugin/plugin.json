@@ -1,18 +1,18 @@
 {
-  "name": "preflight",
+  "name": "vibecheck",
   "version": "1.0.0",
-  "description": "Stop shipping vulnerabilities. 156 preflight security checks for Claude Code. Blocks exposed API keys, disabled Supabase RLS, missing rate limiting, open CORS, and 150+ more before they reach your codebase.",
+  "description": "Stop shipping vulnerabilities. 156 automated security checks for Claude Code. Blocks exposed API keys, disabled Supabase RLS, missing rate limiting, open CORS, and 150+ more before they reach your codebase.",
   "author": {
     "name": "Haralds Gabrans",
     "url": "https://github.com/Wishmakingfairy"
   },
-  "repository": "https://github.com/Wishmakingfairy/preflight",
+  "repository": "https://github.com/Wishmakingfairy/vibecheck",
   "license": "MIT",
   "keywords": [
     "security",
     "owasp",
     "vibe-coding",
-    "preflight-checks",
+    "vibe-check",
     "vulnerability-scanner",
     "secrets-detection",
     "api-key-detection",

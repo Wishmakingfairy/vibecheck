@@ -1,5 +1,5 @@
 """
-preflight Logging Security Checker
+vibecheck Logging Security Checker
 5 checks for sensitive data in logs, log injection, and production console leaks.
 
 Author: Haralds Gabrans

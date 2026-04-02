@@ -1,5 +1,5 @@
 {
-  "description": "preflight: 156 automated security checks. Blocks vulnerabilities before they reach your codebase.",
+  "description": "vibecheck: 156 automated security checks. Blocks vulnerabilities before they reach your codebase.",
   "hooks": {
     "PreToolUse": [
       {

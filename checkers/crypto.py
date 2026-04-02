@@ -1,5 +1,5 @@
 """
-preflight Cryptography Checker
+vibecheck Cryptography Checker
 12 checks for weak crypto, insecure random, deprecated algorithms, and key management.
 
 Author: Haralds Gabrans

@@ -1,5 +1,5 @@
 """
-preflight Database Security Checker
+vibecheck Database Security Checker
 20 checks for SQL injection, Supabase RLS, mass assignment, and database misconfigurations.
 
 Author: Haralds Gabrans

@@ -1,5 +1,5 @@
 """
-preflight WebSocket Security Checker
+vibecheck WebSocket Security Checker
 4 checks for missing auth, origin validation, message size limits, and heartbeat/timeout.
 
 Author: Haralds Gabrans

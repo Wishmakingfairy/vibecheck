@@ -1,5 +1,5 @@
 """
-preflight Security Headers Checker
+vibecheck Security Headers Checker
 11 checks for missing or misconfigured security headers.
 
 Author: Haralds Gabrans

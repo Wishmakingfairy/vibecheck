@@ -1,6 +1,6 @@
 <p align="center">
-  <h1 align="center">preflight</h1>
-  <p align="center"><strong>Stop shipping vulnerabilities. 156 preflight security checks for Claude Code.</strong></p>
+  <h1 align="center">vibecheck</h1>
+  <p align="center"><strong>Vibe code. Vibe check. 156 security checks for Claude Code.</strong></p>
   <p align="center">Blocks dangerous patterns <em>before</em> Claude writes them to disk.</p>
 </p>
 
@@ -9,7 +9,7 @@
   <img src="https://img.shields.io/badge/CWE_coverage-68_IDs-orange?style=flat-square" alt="68 CWEs" />
   <img src="https://img.shields.io/badge/avg_latency-88ms-brightgreen?style=flat-square" alt="88ms latency" />
   <img src="https://img.shields.io/badge/dependencies-zero-brightgreen?style=flat-square" alt="Zero dependencies" />
-  <img src="https://img.shields.io/github/license/Wishmakingfairy/preflight?style=flat-square" alt="MIT License" />
+  <img src="https://img.shields.io/github/license/Wishmakingfairy/vibecheck?style=flat-square" alt="MIT License" />
 </p>
 
 ---
@@ -18,12 +18,12 @@
 
 AI coding tools generate insecure code by default. Supabase schemas without RLS. API keys in frontend bundles. JWT tokens that never expire. CORS open to the world. Passwords hashed with MD5.
 
-Audit tools find these problems **after the fact**. preflight finds them **before they exist**.
+Audit tools find these problems **after the fact**. vibecheck finds them **before they exist**.
 
 ```
 You:        "Create a Stripe integration"
 Claude:     const stripe = require("stripe")("sk_live_51H7abc123...");
-preflight:  BLOCKED. Stripe live key hardcoded. Use process.env.STRIPE_SECRET_KEY.
+vibecheck:  BLOCKED. Stripe live key hardcoded. Use process.env.STRIPE_SECRET_KEY.
 Claude:     Rewrites with environment variable.
 ```
 
@@ -43,7 +43,7 @@ The vulnerability never reaches your codebase.
 - [CWE Mapping](#cwe-mapping)
 - [File Structure](#file-structure)
 - [Requirements](#requirements)
-- [Comparison](#how-preflight-compares)
+- [Comparison](#how-vibecheck-compares)
 - [Troubleshooting](#troubleshooting)
 - [Contributing](#contributing)
 
@@ -53,12 +53,12 @@ The vulnerability never reaches your codebase.
 
 **1. Clone**
 ```bash
-git clone https://github.com/Wishmakingfairy/preflight.git ~/.claude/plugins/preflight
+git clone https://github.com/Wishmakingfairy/vibecheck.git ~/.claude/plugins/vibecheck
 ```
 
 **2. Install**
 ```bash
-claude plugin add ~/.claude/plugins/preflight
+claude plugin add ~/.claude/plugins/vibecheck
 ```
 
 **3. Build with confidence.** Every file Claude writes now goes through 156 security checks. Zero configuration needed.
@@ -67,7 +67,7 @@ claude plugin add ~/.claude/plugins/preflight
 
 ## Demo
 
-Here is what happens when Claude tries to write insecure code with preflight installed:
+Here is what happens when Claude tries to write insecure code with vibecheck installed:
 
 ```
 $ echo '{"tool_name":"Write","tool_input":{"file_path":"app.js",
@@ -81,7 +81,7 @@ BLOCKED this write. Security vulnerabilities detected:
   Use environment variables: process.env.STRIPE_SECRET_KEY.
   CWE: CWE-798
 
-  Suppress if intentional: // preflight-disable SEC-004
+  Suppress if intentional: // vibecheck-disable SEC-004
 ```
 
 ```
@@ -261,13 +261,13 @@ See `skills/security-scan/references/` for complete documentation of all checks 
 
 ## How It Works
 
-preflight runs as a **PreToolUse hook** on every Write, Edit, and MultiEdit operation:
+vibecheck runs as a **PreToolUse hook** on every Write, Edit, and MultiEdit operation:
 
 ```
 Claude tries to write a file
          |
          v
-  preflight intercepts
+  vibecheck intercepts
          |
   Detect file extension (.js? .sql? .py? .yaml?)
          |
@@ -295,7 +295,7 @@ Claude tries to write a file
 
 ## Smart Detection
 
-preflight is not a dumb regex scanner. It understands context:
+vibecheck is not a dumb regex scanner. It understands context:
 
 | Feature | How It Works |
 |:--------|:-------------|
@@ -304,13 +304,13 @@ preflight is not a dumb regex scanner. It understands context:
 | **Public API awareness** | CORS wildcard not flagged if public API patterns detected in the same file |
 | **Comment context** | Comments with "BAD:", "DON'T", "NEVER", "WRONG" recognized as educational, not vulnerabilities |
 | **Entropy analysis** | Catches secrets without known prefixes via Shannon entropy > 4.5 on 20+ char strings |
-| **Inline suppression** | `// preflight-disable SEC-001` skips a specific check when you know what you are doing |
+| **Inline suppression** | `// vibecheck-disable SEC-001` skips a specific check when you know what you are doing |
 
 ---
 
 ## Configuration
 
-Create `.preflight.json` in your project root. Entirely optional.
+Create `.vibecheck.json` in your project root. Entirely optional.
 
 ```json
 {
@@ -332,7 +332,7 @@ Create `.preflight.json` in your project root. Entirely optional.
 | `severity_overrides` | `object` | `{}` | Change severity for specific checks. `{ "NET-001": "WARNING" }` downgrades CORS wildcard from CRITICAL to WARNING. |
 | `disabled` | `string[]` | `[]` | Disable specific checks entirely. `["SEC-013"]` disables entropy analysis. |
 | `ignore_paths` | `string[]` | `[]` | Glob patterns for files to skip. Test files are already handled automatically. |
-| `inline_suppression` | `boolean` | `true` | Enable/disable `// preflight-disable` comments. |
+| `inline_suppression` | `boolean` | `true` | Enable/disable `// vibecheck-disable` comments. |
 | `framework` | `string` | `"auto"` | Force a framework (`nextjs`, `vite`, `express`, `django`). Auto-detects from package.json. |
 
 </details>
@@ -343,7 +343,7 @@ Create `.preflight.json` in your project root. Entirely optional.
 
 ### Skills
 
-preflight includes 4 skills that activate when you ask about security topics:
+vibecheck includes 4 skills that activate when you ask about security topics:
 
 | Skill | Trigger Phrases | What It Does |
 |:------|:----------------|:-------------|
@@ -395,9 +395,9 @@ Every check maps to a [Common Weakness Enumeration](https://cwe.mitre.org/) ID f
 
 ---
 
-## How preflight Compares
+## How vibecheck Compares
 
-| | preflight | eslint-plugin-security | Snyk Code | Semgrep |
+| | vibecheck | eslint-plugin-security | Snyk Code | Semgrep |
 |:---|:---:|:---:|:---:|:---:|
 | Runs inside Claude Code | Yes | No | No | No |
 | Blocks before write | Yes | No (lint after) | No (scan after) | No (scan after) |
@@ -408,14 +408,14 @@ Every check maps to a [Common Weakness Enumeration](https://cwe.mitre.org/) ID f
 | Dependencies | 0 (Python stdlib) | npm | Cloud service | Binary |
 | Latency per file | ~88ms | N/A | Seconds | Seconds |
 
-preflight is purpose-built for AI-assisted development. It catches the specific mistakes that LLMs make when generating code.
+vibecheck is purpose-built for AI-assisted development. It catches the specific mistakes that LLMs make when generating code.
 
 ---
 
 ## File Structure
 
 ```
-preflight/
+vibecheck/
 ├── .claude-plugin/plugin.json      # Plugin metadata
 ├── hooks/
 │   ├── hooks.json                  # PreToolUse wiring
@@ -468,8 +468,8 @@ preflight/
 claude plugin list
 
 # Reinstall
-claude plugin remove preflight
-claude plugin add ~/.claude/plugins/preflight
+claude plugin remove vibecheck
+claude plugin add ~/.claude/plugins/vibecheck
 ```
 
 </details>
@@ -484,7 +484,7 @@ Test files are already auto-downgraded. For additional paths:
 
 For a specific instance:
 ```javascript
-// preflight-disable SEC-001
+// vibecheck-disable SEC-001
 const awsKeyForTesting = "AKIA...";
 ```
 
@@ -506,7 +506,7 @@ The hook only loads checkers relevant to the file extension. A `.css` file skips
 
 ## Contributing
 
-Found a false positive? Missing a check? [Open an issue](https://github.com/Wishmakingfairy/preflight/issues).
+Found a false positive? Missing a check? [Open an issue](https://github.com/Wishmakingfairy/vibecheck/issues).
 
 When adding a new check:
 1. Add the pattern to the relevant `checkers/*.py` module

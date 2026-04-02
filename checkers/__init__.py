@@ -1,5 +1,5 @@
 """
-preflight Checker Registry
+vibecheck Checker Registry
 Central registry for all 15 security checker modules.
 Dispatches checks based on file extension, aggregates results.
 
@@ -210,7 +210,7 @@ def run_checks(content: str, file_path: str, config: dict = None) -> List[CheckR
     Args:
         content: The file content or diff to check
         file_path: The path of the file being written
-        config: Optional .preflight.json config dict
+        config: Optional .vibecheck.json config dict
 
     Returns:
         List of CheckResult findings, sorted by severity (CRITICAL first)

@@ -1,5 +1,5 @@
 """
-preflight File System Security Checker
+vibecheck File System Security Checker
 5 checks for path traversal, unsafe permissions, zip slip, symlink attacks, and temp file safety.
 
 Author: Haralds Gabrans

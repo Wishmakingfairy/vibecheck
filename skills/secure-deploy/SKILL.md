@@ -14,7 +14,7 @@ triggers:
 
 ## CRITICAL (Must fix before deploy)
 
-- [ ] No API keys/secrets in source code (run `preflight scan`)
+- [ ] No API keys/secrets in source code (run `vibecheck scan`)
 - [ ] .env files in .gitignore
 - [ ] DEBUG=False / NODE_ENV=production
 - [ ] Supabase RLS enabled on ALL tables

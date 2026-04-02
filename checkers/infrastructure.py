@@ -1,5 +1,5 @@
 """
-preflight Infrastructure Security Checker
+vibecheck Infrastructure Security Checker
 10 checks for deployment, container, and CI/CD security issues.
 
 Author: Haralds Gabrans

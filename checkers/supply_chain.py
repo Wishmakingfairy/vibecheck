@@ -1,5 +1,5 @@
 """
-preflight Supply Chain Security Checker
+vibecheck Supply Chain Security Checker
 15 checks for dependency attacks, typosquatting, and build pipeline security.
 
 Author: Haralds Gabrans
